@@ -24,15 +24,19 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
+          cache: 'pnpm'
 
-      - name: Setup @antfu/ni
-        run: npm i -g @antfu/ni
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       - name: Install dependencies
-        run: nci
+        run: pnpm install --frozen-lockfile
+        env:
+          npm_config_minimum_release_age: 0
 
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+        run: pnpm run build --base /${{github.event.repository.name}}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
