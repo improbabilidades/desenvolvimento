@@ -6,6 +6,14 @@ layout: cover
 kicker: Indo além dos Jupyter Notebooks na Engenharia Química
 ---
 
+Elizabet Medeiros / Fabián Abarca
+
+<span class="text-sm">
+Centro de Informática <br>
+Universidade Federal da Paraíba <br>
+Julho de 2026
+</span>
+
 ---
 layout: columns
 title: Onde Estamos e Para Onde Vamos?
@@ -170,7 +178,7 @@ columns:
       items:
         [
           "Use ambientes virtuais para isolar dependências.",
-          "Liste todas as bibliotecas necessárias em requirements.txt ou pyproject.toml.",
+          "Liste todas as bibliotecas necessárias em <code>requirements.txt</code> ou <code>pyproject.toml</code>.",
           "Garanta que todos os membros da equipe usem as mesmas versões.",
         ],
     }
@@ -249,3 +257,101 @@ layout: quote
 quote: O diferencial de um engenheiro químico moderno não é apenas saber a teoria, mas saber transformar equações em ferramentas automatizadas e reprodutíveis.
 author: Professora Elizabet (ou professor Fabián, não sei)
 ---
+
+---
+layout: section
+title: Exemplo com GitHub Codespaces
+---
+
+---
+layout: steps
+kicker: GitHub Codespaces
+title: Como Começar
+steps:
+  - {
+      title: Repositório,
+      desc: "Abra o repositório de exemplo.",
+      icon: "lucide:folder",
+    }
+  - {
+      title: Fork,
+      desc: "Faça um fork do repositório para sua conta.",
+      icon: "lucide:git-fork",
+    }
+  - {
+      title: Codespace,
+      desc: "Abra o repositório em um GitHub Codespace.",
+      icon: "lucide:cloud",
+    }
+  - {
+      title: Programar!,
+      desc: "Comece a programar diretamente no Codespace.",
+      icon: "lucide:code",
+    }
+---
+
+---
+layout: two-cols
+kicker: Monitoramento de reator químico
+title: O Repositório de Exemplo
+---
+
+## Estrutura de arquivos
+
+<br>
+
+<FileTree :items="[{name:'data', children:[{name:'process.csv'}]}, {name:'images', children:[{name:'...'}]}, {name:'.gitignore'}, {name:'pyproject.toml'}, {name:'main.py'}, {name:'README.md'}]" />
+
+::right::
+
+## Como criar o codespace para rodar na nuvem
+
+Dar uma olhada no `README.md` do repositório para instruções de como criar o Codespace e rodar o código de exemplo.
+
+## Como rodar o código localmente
+
+Opcionalmente, você pode **clonar** o repositório e rodar o código localmente. Depois de instalar o Python, `uv`, Git e um IDE (como o VS Code):
+
+```bash
+git clone https://github.com/improbabilidades/monitoramento-reator.git
+```
+
+<Callout tone="info" icon="lucide:download">
+Instruções para <a href="https://docs.astral.sh/uv/">instalar uv</a>.
+</Callout>
+
+---
+layout: section
+title: Big Data e Bases de Dados
+---
+
+---
+layout: code-explain
+kicker: SQL — Quando o código precisa falar com um banco de dados
+title: As Cinco Vs do Big Data
+notes:
+  - "<strong>Volume</strong> — Muitos dados."
+  - "<strong>Variedade</strong> — Diferentes tipos de dados."
+  - "<strong>Velocidade</strong> — A rapidez com que chegam."
+  - "<strong>Veracidade</strong> — A qualidade e confiabilidade."
+  - "<strong>Valor</strong> — A utilidade."
+---
+
+```sql
+SELECT
+  reactor_id,
+  DATE_TRUNC('hour', measured_at) AS hora,
+  AVG(temperature_c) AS temp_media_c,
+  AVG(pressure_bar) AS pressao_media_bar
+FROM reactor_sensor_data
+WHERE reactor_id = 'R-101'
+  AND measured_at >= NOW() - INTERVAL '24 hours'
+GROUP BY reactor_id, DATE_TRUNC('hour', measured_at)
+ORDER BY hora;
+```
+
+---
+
+
+---
+
